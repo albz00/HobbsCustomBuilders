@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,300..600,0..1,-50..200&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .material-symbols-rounded {
+    font-family: 'Material Symbols Rounded';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.5rem;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hobbs-hero-bg-photo {
+    filter: brightness(1.04) contrast(1.02) saturate(0.9);
+  }
+
+  .hobbs-crew-photo {
+    filter: grayscale(0.25) contrast(1.12);
+  }
+
+  .hobbs-reveal,
+  .hobbs-reveal-card {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hobbs-animate-hero-copy {
+    animation: hobbs-hero-copy-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+  }
+
+  .hobbs-animate-hero-seal {
+    animation: hobbs-seal-arrive 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both, hobbs-seal-float 7s ease-in-out 1.5s infinite;
+  }
+
+}
+
+::-webkit-scrollbar {
+  width: 22px;
+  height: 22px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e4e4e7;
+  border-left: 1px solid #d4d4d8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #153a62 0%, #11284a 100%);
+  border: 6px solid #e4e4e7;
+  border-radius: 9999px;
+  min-height: 48px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #1f4670 0%, #143456 100%);
+}
+
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #11284a #e4e4e7;
+}
+
+@layer components {
+  /*
+   * Slight rounding on diagonal corners only (construction / industrial trim).
+   * order: top-left, top-right, bottom-right, bottom-left
+   */
+  .btn-cut {
+    border-radius: 0.22rem 0 0.22rem 0;
+  }
+
+  /*
+   * CTA gradients — “pop” depth with gold trim + lift on hover (see reduced-motion below).
+   */
+  .btn-fill-pop {
+    background: linear-gradient(
+      152deg,
+      #1e4d7c 0%,
+      #163a5e 22%,
+      #11284a 52%,
+      #0a1a2e 100%
+    );
+    color: #ffffff;
+    border: 1px solid rgb(201 164 61 / 0.55);
+    box-shadow:
+      0 4px 14px -3px rgb(8 25 48 / 0.5),
+      inset 0 1px 0 rgb(255 255 255 / 0.14);
+    transition:
+      transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.28s ease,
+      filter 0.28s ease,
+      border-color 0.28s ease;
+  }
+
+  .btn-fill-pop:hover {
+    background: linear-gradient(
+      152deg,
+      #256199 0%,
+      #1a4570 28%,
+      #153a62 55%,
+      #0d2238 100%
+    );
+    border-color: rgb(232 207 122 / 0.75);
+    box-shadow:
+      0 8px 22px -4px rgb(8 25 48 / 0.55),
+      inset 0 1px 0 rgb(255 255 255 / 0.2);
+    transform: translateY(-2px);
+    filter: saturate(1.05);
+  }
+
+  .btn-fill-pop:active {
+    transform: translateY(0);
+    box-shadow:
+      0 2px 8px -2px rgb(8 25 48 / 0.45),
+      inset 0 2px 6px rgb(0 0 0 / 0.2);
+  }
+
+  .btn-fill-pop:focus-visible {
+    outline: 2px solid rgb(255 255 255 / 0.55);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgb(17 40 74 / 0.45);
+  }
+
+  .btn-line-pop {
+    background: linear-gradient(180deg, #ffffff 0%, #f3f4f6 100%);
+    color: #11284a;
+    border: 1px solid rgb(17 40 74 / 0.22);
+    box-shadow:
+      0 4px 14px -4px rgb(8 25 48 / 0.12),
+      inset 0 1px 0 rgb(255 255 255 / 0.95);
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s ease,
+      border-color 0.3s ease,
+      background 0.3s ease;
+  }
+
+  .btn-line-pop:hover {
+    background: linear-gradient(180deg, #ffffff 0%, #faf8f3 45%, #f4f1eb 100%);
+    border-color: rgb(201 164 61 / 0.6);
+    box-shadow:
+      0 8px 22px -6px rgb(8 25 48 / 0.16),
+      inset 0 1px 0 rgb(255 255 255 / 1);
+    transform: translateY(-2px);
+  }
+
+  .btn-line-pop:active {
+    transform: translateY(0);
+  }
+
+  .btn-line-pop:focus-visible {
+    outline: 2px solid rgb(17 40 74 / 0.45);
+    outline-offset: 2px;
+  }
+
+  .btn-ghost-pop {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.12) 0%, rgb(255 255 255 / 0.02) 100%);
+    color: #11284a;
+    border: 1px solid rgb(17 40 74 / 0.22);
+    box-shadow: 0 2px 10px -4px rgb(8 25 48 / 0.08);
+    transition:
+      transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.34s ease,
+      border-color 0.34s ease,
+      background 0.34s ease;
+  }
+
+  .btn-ghost-pop:hover {
+    border-color: rgb(201 164 61 / 0.55);
+    background: linear-gradient(180deg, rgb(201 164 61 / 0.1) 0%, rgb(201 164 61 / 0.04) 100%);
+    box-shadow: 0 6px 16px -6px rgb(8 25 48 / 0.12);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost-pop:active {
+    transform: translateY(0);
+  }
+
+  .btn-ghost-pop:focus-visible {
+    outline: 2px solid rgb(17 40 74 / 0.38);
+    outline-offset: 2px;
+  }
+
+  /** Gallery / filter pills when not selected */
+  .btn-soft-pop {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f4f5 100%);
+    color: #18181b;
+    border: 1px solid #e4e4e7;
+    box-shadow: 0 2px 8px -2px rgb(0 0 0 / 0.06);
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .btn-soft-pop:hover {
+    border-color: rgb(17 40 74 / 0.35);
+    box-shadow: 0 4px 12px -4px rgb(8 25 48 / 0.1);
+    transform: translateY(-1px);
+  }
+}
+
+@layer utilities {
+  /*
+   * Very subtle film grain. Sits above backgrounds; pointer-events: none.
+   */
+  .noise-overlay {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    opacity: 0.055;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
+  .hero-measure-line {
+    height: 3px;
+    transform-origin: left center;
+    background: linear-gradient(90deg, rgb(201 164 61), rgb(201 164 61 / 0.12));
+  }
+
+  .hobbs-animate-measure {
+    animation: hobbs-measure-draw 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+}
+
+@keyframes hobbs-measure-draw {
+  from {
+    transform: scaleX(0);
+    opacity: 0.95;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes hobbs-hero-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hobbs-seal-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(-40%) scale(0.94) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-43%) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes hobbs-seal-float {
+  0%,
+  100% {
+    transform: translateY(-43%) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-46%) rotate(1deg);
+  }
+}
+
+@keyframes hobbs-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hobbs-reveal,
+    .hobbs-reveal-card {
+      animation: hobbs-rise-in both;
+      animation-timeline: view();
+      animation-range: entry 12% cover 30%;
+    }
+
+    .hobbs-reveal-card {
+      animation-range: entry 8% cover 24%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hobbs-animate-measure,
+  .hobbs-animate-hero-copy,
+  .hobbs-animate-hero-seal,
+  .hobbs-reveal,
+  .hobbs-reveal-card {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .hero-measure-line {
+    transform: scaleX(1) !important;
+  }
+
+  .btn-fill-pop:hover,
+  .btn-fill-pop:active,
+  .btn-line-pop:hover,
+  .btn-line-pop:active,
+  .btn-ghost-pop:hover,
+  .btn-ghost-pop:active,
+  .btn-soft-pop:hover {
+    transform: none !important;
+  }
+}
