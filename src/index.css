@@ -227,6 +227,11 @@
     background-repeat: repeat;
   }
 
+  /* Hero copy is z-10 — grain below text so clipped gradients aren’t flattened */
+  .noise-overlay-under-copy {
+    z-index: 5;
+  }
+
   .hero-measure-line {
     height: 3px;
     transform-origin: left center;

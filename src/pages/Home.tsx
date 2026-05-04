@@ -183,7 +183,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="noise-overlay" aria-hidden />
+        <div className="noise-overlay noise-overlay-under-copy" aria-hidden />
       </section>
 
       {/* Stats proof band */}
