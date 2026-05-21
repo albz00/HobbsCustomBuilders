@@ -67,6 +67,9 @@ function BeforeAfterSlider({
           src={beforeSrc}
           alt=""
           className="absolute inset-0 z-0 h-full w-full object-cover"
+          loading="lazy"
+          fetchPriority="low"
+          decoding="async"
           draggable={false}
         />
         <div
@@ -80,6 +83,9 @@ function BeforeAfterSlider({
             src={afterSrc}
             alt=""
             className="absolute inset-0 z-0 h-full w-full object-cover"
+            loading="lazy"
+            fetchPriority="low"
+            decoding="async"
             draggable={false}
           />
         </div>

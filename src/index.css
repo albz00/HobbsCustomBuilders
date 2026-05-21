@@ -82,7 +82,7 @@
   }
 
   /*
-   * CTA gradients — “pop” depth with gold trim + lift on hover (see reduced-motion below).
+   * CTA gradients: “pop” depth with gold trim + lift on hover (see reduced-motion below).
    */
   .btn-fill-pop {
     background: linear-gradient(
@@ -93,7 +93,7 @@
       #0a1a2e 100%
     );
     color: #ffffff;
-    border: 1px solid rgb(201 164 61 / 0.55);
+    border: 1px solid rgb(17 40 74 / 0.45);
     box-shadow:
       0 4px 14px -3px rgb(8 25 48 / 0.5),
       inset 0 1px 0 rgb(255 255 255 / 0.14);
@@ -112,7 +112,7 @@
       #153a62 55%,
       #0d2238 100%
     );
-    border-color: rgb(232 207 122 / 0.75);
+    border-color: rgb(30 64 102 / 0.65);
     box-shadow:
       0 8px 22px -4px rgb(8 25 48 / 0.55),
       inset 0 1px 0 rgb(255 255 255 / 0.2);
@@ -148,8 +148,8 @@
   }
 
   .btn-line-pop:hover {
-    background: linear-gradient(180deg, #ffffff 0%, #faf8f3 45%, #f4f1eb 100%);
-    border-color: rgb(201 164 61 / 0.6);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-color: rgb(17 40 74 / 0.38);
     box-shadow:
       0 8px 22px -6px rgb(8 25 48 / 0.16),
       inset 0 1px 0 rgb(255 255 255 / 1);
@@ -178,8 +178,8 @@
   }
 
   .btn-ghost-pop:hover {
-    border-color: rgb(201 164 61 / 0.55);
-    background: linear-gradient(180deg, rgb(201 164 61 / 0.1) 0%, rgb(201 164 61 / 0.04) 100%);
+    border-color: rgb(17 40 74 / 0.35);
+    background: linear-gradient(180deg, rgb(17 40 74 / 0.06) 0%, rgb(17 40 74 / 0.02) 100%);
     box-shadow: 0 6px 16px -6px rgb(8 25 48 / 0.12);
     transform: translateY(-1px);
   }
@@ -227,7 +227,7 @@
     background-repeat: repeat;
   }
 
-  /* Hero copy is z-10 — grain below text so clipped gradients aren’t flattened */
+  /* Hero copy is z-10; grain below text so clipped gradients aren’t flattened */
   .noise-overlay-under-copy {
     z-index: 5;
   }

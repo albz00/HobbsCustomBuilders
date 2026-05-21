@@ -1,5 +1,18 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
+import ContactForm from '../components/ContactForm';
+import {
+  ADDRESS_LINES,
+  EMAIL,
+  featuredProject,
+  LICENSE,
+  LICENSE_NUMBER,
+  PHONE,
+  PHONE_TEL,
+  services,
+  testimonials
+} from '../content/site';
 
 function GoogleLogo({ className = 'h-6 w-6' }: { className?: string }) {
   return (
@@ -35,78 +48,11 @@ function Home() {
   const heroSealLogoSrc =
     'https://imagedelivery.net/FvOXf_HoZxDXgXU5xPiCfw/15b92a7a-98ce-4ebe-799a-cb503b70aa00/public';
 
-  const services = [
-    {
-      title: 'Custom homes',
-      description:
-        'We combine your vision with our field experience to shape a home that feels personal, practical, and built for daily life.',
-      image:
-        'https://imagedelivery.net/FvOXf_HoZxDXgXU5xPiCfw/160df607-b778-4d99-4b7b-fcb2215a6200/public'
-    },
-    {
-      title: 'Additions',
-      description:
-        'More room should feel like it belonged there from the start. We plan the tie ins, structure, finishes, and flow with that in mind.',
-      image:
-        'https://images.ctfassets.net/s4ybdu2ld1ox/13AAMHkMXK7m2qDVl6gwoM/c29decfe0b2d33ce80eeee97900a7457/home-additions.jpeg?w=1060&h=795&fl=progressive&q=70&fm=jpg&bg=transparent'
-    },
-    {
-      title: 'Decks and porches',
-      description:
-        'Front porches, back decks, stairs, rails, and outdoor spaces built for mountain weather and everyday use.',
-      image:
-        'https://imagedelivery.net/FvOXf_HoZxDXgXU5xPiCfw/cd0ffdbe-ac03-40d3-5654-209da823be00/public'
-    },
-    {
-      title: 'Signature custom projects',
-      description:
-        'Distinctive finish work, specialty spaces, and one-of-one details that make a custom home feel considered from end to end.',
-      image:
-        'https://imagedelivery.net/FvOXf_HoZxDXgXU5xPiCfw/329ed413-b576-445e-5faf-3c8e09bca000/public'
-    }
-  ];
-
   const stats = [
-    { number: 'WV', label: 'Licensed contractor' },
-    { number: '5★', label: 'Customer reviewed' },
-    { number: 'Custom', label: 'Homes and additions' },
-    { number: 'Local', label: 'White Sulphur Springs' }
-  ];
-
-  const projects = [
-    {
-      title: 'Porches with real curb appeal',
-      category: 'Front porch',
-      image:
-        'https://imagedelivery.net/FvOXf_HoZxDXgXU5xPiCfw/817e324f-6387-41a0-c5e9-a67a15a65000/public'
-    },
-    {
-      title: 'Fresh rooms without a full move',
-      category: 'Addition',
-      image:
-        'https://imagedelivery.net/FvOXf_HoZxDXgXU5xPiCfw/9d516828-ef70-495f-1f5b-80fe6f65c900/public'
-    },
-    {
-      title: 'Decks made for the view',
-      category: 'Decks',
-      image:
-        'https://imagedelivery.net/FvOXf_HoZxDXgXU5xPiCfw/f2b383bf-e22b-48f8-4d97-30d1c1995100/public'
-    }
-  ];
-
-  const testimonials = [
-    {
-      name: 'Sarah Yates',
-      role: 'Homeowner',
-      ratingLabel: '5 out of 5',
-      text: 'They built a beautiful front porch for us, put in a handicap shower, and laid flooring in our home. The crew was always respectful and highly knowledgeable in every job. I highly recommended them and will be using them always in the future.'
-    },
-    {
-      name: 'Debbie Totten',
-      role: 'Homeowner',
-      ratingLabel: '5 out of 5',
-      text: 'This group is excellent. They worked sunrise to sunset, rain and shine, not to mention hot hot weather and never complained. So friendly and did an excellent job!!! Our roof looks beautiful! Very pleased!'
-    }
+    { id: 'license', label: 'Licensed contractor', license: true as const },
+    { id: 'reviews', number: '5★', label: 'Customer reviewed' },
+    { id: 'builds', number: 'Custom', label: 'Homes and additions' },
+    { id: 'local', number: 'Local', label: 'White Sulphur Springs' }
   ];
 
   const previewReview = (text: string, expanded: boolean) => {
@@ -119,7 +65,7 @@ function Home() {
 
   return (
     <>
-      {/* Hero — split: copy left, image right */}
+      {/* Hero: split layout, copy left, image right */}
       <section className="relative isolate flex min-h-[100svh] scroll-mt-40 items-center overflow-hidden border-b border-zinc-200 bg-white py-32 text-zinc-950 md:scroll-mt-48 md:py-40 lg:min-h-screen">
         <div className="pointer-events-none absolute inset-0 -z-40 bg-gradient-to-br from-white via-zinc-100 to-zinc-200" aria-hidden />
         <div className="absolute inset-y-0 right-0 -z-30 h-full w-full overflow-hidden md:w-[58%] lg:w-[56%]">
@@ -134,6 +80,7 @@ function Home() {
               width={1600}
               height={1200}
               loading={index === 0 ? 'eager' : 'lazy'}
+              fetchPriority={index === 0 ? 'high' : 'low'}
               decoding="async"
             />
           ))}
@@ -148,6 +95,7 @@ function Home() {
             width={520}
             height={520}
             loading="eager"
+            fetchPriority="high"
             decoding="async"
             className="aspect-square w-full rounded-full object-cover opacity-[0.92] shadow-[0_24px_70px_-32px_rgba(8,25,48,0.72)]"
           />
@@ -161,24 +109,24 @@ function Home() {
             </h1>
             <div className="hero-measure-line mt-5 max-w-[min(39rem,100%)] hobbs-animate-measure" aria-hidden />
             <p className="mb-8 mt-6 max-w-[43rem] text-[1.125rem] font-medium leading-relaxed text-zinc-700">
-              We combine your vision with our expertise to bring custom homes, additions, decks, showers, flooring, and more to life.
+              We combine your vision with our expertise to bring custom homes, additions, decks, and signature outdoor spaces to life.
             </p>
             <p className="mb-10 hidden max-w-[42rem] text-sm leading-relaxed text-hobbs-gold-dim sm:block">
               WV license #WV061746. Based in White Sulphur Springs and serving families who want the work done right.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="btn-cut btn-fill-pop inline-flex items-center justify-center px-8 py-3.5 text-[13px] font-semibold uppercase tracking-[0.12em]"
               >
                 Start your build
-              </a>
-              <a
-                href="#projects"
+              </Link>
+              <Link
+                to="/builds"
                 className="btn-cut btn-line-pop inline-flex items-center justify-center px-8 py-3.5 text-[13px] font-semibold uppercase tracking-[0.12em]"
               >
-                See the work
-              </a>
+                See our builds
+              </Link>
             </div>
           </div>
         </div>
@@ -197,11 +145,25 @@ function Home() {
 
           <div className="mx-auto mt-10 grid overflow-hidden rounded-sm border border-white/16 bg-white/[0.075] shadow-[0_24px_70px_-44px_rgba(0,0,0,0.8)] sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="relative border-b border-white/10 px-6 py-8 text-center last:border-b-0 sm:[&:nth-child(odd)]:border-r lg:border-b-0 lg:border-r lg:last:border-r-0 lg:px-5 lg:py-10">
-                <span className="block font-display text-[clamp(3rem,6vw,4rem)] leading-none tracking-[0.01em] text-hobbs-gold-bright tabular-nums">
-                  {stat.number}
-                </span>
-                <span className="mt-3 block text-[12px] font-bold uppercase leading-snug tracking-[0.18em] text-white">
+              <div
+                key={stat.id}
+                className="relative flex min-h-[9.5rem] flex-col items-center justify-center border-b border-white/10 px-5 py-8 text-center last:border-b-0 sm:[&:nth-child(odd)]:border-r lg:min-h-[10.5rem] lg:border-b-0 lg:border-r lg:last:border-r-0 lg:px-6 lg:py-10"
+              >
+                {'license' in stat && stat.license ? (
+                  <div className="flex flex-col items-center leading-none">
+                    <span className="font-display text-[clamp(2.75rem,5.5vw,3.5rem)] tracking-[0.04em] text-hobbs-gold-bright">
+                      WV
+                    </span>
+                    <span className="mt-1 font-display text-[clamp(1.5rem,3vw,2.125rem)] tracking-[0.06em] text-hobbs-gold-bright/95">
+                      #{LICENSE_NUMBER}
+                    </span>
+                  </div>
+                ) : (
+                  <span className="block font-display text-[clamp(2.75rem,6vw,4rem)] leading-none tracking-[0.01em] text-hobbs-gold-bright">
+                    {stat.number}
+                  </span>
+                )}
+                <span className="mt-4 block max-w-[11rem] text-[11px] font-bold uppercase leading-snug tracking-[0.16em] text-white sm:text-[12px] sm:tracking-[0.18em]">
                   {stat.label}
                 </span>
               </div>
@@ -243,6 +205,8 @@ function Home() {
                     alt=""
                     className="absolute inset-0 h-full w-full object-cover grayscale-[20%] transition-transform duration-700 group-hover:scale-[1.045]"
                     loading="lazy"
+                    fetchPriority="low"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-tr from-hobbs-navy-deep/55 via-transparent to-white/20" aria-hidden />
                 </div>
@@ -261,6 +225,8 @@ function Home() {
               alt="Builders reviewing plans on site"
               className="absolute inset-0 h-full w-full object-cover grayscale-[35%] transition-transform duration-700 group-hover:scale-[1.04] hobbs-crew-photo"
               loading="lazy"
+              fetchPriority="low"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-hobbs-navy-deep via-transparent to-transparent opacity-95" aria-hidden />
           </div>
@@ -305,66 +271,31 @@ function Home() {
                 A glimpse at the kind of spaces we help shape, from curb appeal to everyday comfort.
               </p>
             </header>
-            <a
-              href="#contact"
-            className="btn-cut btn-ghost-pop inline-flex self-start px-5 py-2.5 text-[15px] font-semibold transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out sm:self-end md:mb-7"
+            <Link
+              to="/builds"
+              className="btn-cut btn-ghost-pop inline-flex self-start px-5 py-2.5 text-[15px] font-semibold transition-[transform,box-shadow,border-color,background-color] duration-300 ease-out sm:self-end md:mb-7"
             >
-              Ask about your project
-            </a>
+              See more builds
+            </Link>
           </div>
 
-          <div className="relative grid gap-8 md:grid-cols-12 md:items-start md:gap-7">
-            <article className="group cursor-pointer md:col-span-7 md:self-start">
-              <div className="relative aspect-[16/11] overflow-hidden border border-zinc-200 shadow-[14px_14px_0_0_rgb(212,212,216)] transition-transform md:aspect-[18/11] md:duration-500 md:ease-out md:group-hover:-translate-x-1 md:group-hover:-translate-y-1 lg:aspect-[21/11]">
-                <img
-                  src={projects[0].image}
-                  alt={projects[0].title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-tr from-zinc-950 via-zinc-950/40 to-transparent opacity-95" />
-                <div className="absolute inset-x-0 bottom-0 p-7 pb-10">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-hobbs-gold-bright">{projects[0].category}</p>
-                  <h3 className="mt-3 font-display text-3xl text-white">{projects[0].title}</h3>
-                </div>
+          <article className="group mx-auto max-w-4xl cursor-pointer">
+            <div className="relative aspect-[16/10] overflow-hidden border border-zinc-200 shadow-[14px_14px_0_0_rgb(212,212,216)] transition-transform duration-500 ease-out group-hover:-translate-x-1 group-hover:-translate-y-1 md:aspect-[21/10]">
+              <img
+                src={featuredProject.image}
+                alt={featuredProject.title}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                loading="lazy"
+                fetchPriority="low"
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-zinc-950 via-zinc-950/40 to-transparent opacity-95" />
+              <div className="absolute inset-x-0 bottom-0 p-7 pb-10 md:p-9 md:pb-12">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-hobbs-gold-bright">{featuredProject.category}</p>
+                <h3 className="mt-3 font-display text-3xl text-white md:text-4xl">{featuredProject.title}</h3>
               </div>
-            </article>
-
-            <article className="group cursor-pointer md:col-span-5 md:z-10 md:mt-16 md:self-end md:border-l-[8px] md:border-hobbs-gold/45 md:bg-white md:py-8 md:pl-8">
-              <div className="relative aspect-[4/3] overflow-hidden border border-zinc-300 shadow-[14px_-12px_0_0_rgb(17,40,74)] lg:aspect-[5/4]">
-                <img
-                  src={projects[1].image}
-                  alt={projects[1].title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                  loading="lazy"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-zinc-950/95 via-zinc-950/55 to-transparent p-6 pb-12">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-hobbs-gold-bright">{projects[1].category}</p>
-                  <h3 className="mt-3 font-display text-3xl tracking-wide text-white">{projects[1].title}</h3>
-                </div>
-              </div>
-            </article>
-
-            <article className="group cursor-pointer md:col-span-10 md:col-start-2 md:-mt-10 lg:-mt-16">
-              <div className="relative aspect-[16/9] overflow-visible">
-                <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-sm border-2 border-hobbs-navy-deep/30 bg-white shadow-[0_18px_38px_-28px_rgba(8,25,48,0.6)] transition-transform duration-500 ease-out group-hover:translate-x-5 group-hover:translate-y-5" aria-hidden />
-                <div className="absolute inset-0 translate-x-2 translate-y-2 rounded-sm border-2 border-hobbs-gold/35 bg-white transition-transform duration-500 ease-out group-hover:translate-x-3 group-hover:translate-y-3" aria-hidden />
-                <div className="relative h-full overflow-hidden rounded-sm border-2 border-hobbs-navy-deep/85 shadow-xl transition-transform duration-500 ease-out group-hover:-translate-x-1 group-hover:-translate-y-1">
-                <img
-                  src={projects[2].image}
-                  alt={projects[2].title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-transparent to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-8 pb-14">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-hobbs-gold-bright">{projects[2].category}</p>
-                  <h3 className="font-display text-3xl md:text-[2.375rem] text-white">{projects[2].title}</h3>
-                </div>
-                </div>
-              </div>
-            </article>
-          </div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -429,52 +360,28 @@ function Home() {
                 Bring the dream, the rough sketch, or the problem you need solved. We will help turn it into a clear plan.
               </p>
               <div className="mt-8 space-y-5 border-l-4 border-hobbs-gold/70 pl-6">
-                <a href="tel:+13046679343" className="block font-display text-3xl tracking-wide text-zinc-900 transition-colors hover:text-hobbs-navy">
-                  304-667-9343
+                <a href={`tel:${PHONE_TEL}`} className="block font-display text-3xl tracking-wide text-zinc-900 transition-colors hover:text-hobbs-navy">
+                  {PHONE}
+                </a>
+                <a href={`mailto:${EMAIL}`} className="block text-lg font-semibold text-zinc-800 transition-colors hover:text-hobbs-navy">
+                  {EMAIL}
                 </a>
                 <address className="not-italic leading-relaxed text-zinc-600">
-                  PO Box 46<br />
-                  White Sulphur Springs, WV 24986
+                  {ADDRESS_LINES[0]}
+                  <br />
+                  {ADDRESS_LINES[1]}
                 </address>
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-hobbs-gold-dim">
-                  WV license #WV061746
-                </p>
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-hobbs-gold-dim">{LICENSE}</p>
               </div>
+              <Link
+                to="/contact"
+                className="mt-8 inline-block text-sm font-bold uppercase tracking-[0.12em] text-hobbs-navy underline decoration-hobbs-gold/50 underline-offset-4 transition-colors hover:text-hobbs-gold-dim"
+              >
+                Full contact page
+              </Link>
             </div>
 
-            <div className="relative border border-zinc-200 bg-zinc-50 p-6 shadow-[14px_-12px_0_0_rgb(17,40,74)] md:p-9 lg:p-10">
-              <h3 className="font-display mb-7 text-3xl tracking-wide text-zinc-900 md:text-[2.1rem]">Request a project conversation</h3>
-              <form className="space-y-5">
-                <div className="grid gap-5 md:grid-cols-2">
-                  <input
-                    type="text"
-                    placeholder="Your name"
-                    autoComplete="name"
-                    className="w-full border border-zinc-200 bg-white px-4 py-3.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 focus:border-hobbs-navy focus:outline-none focus:ring-1 focus:ring-hobbs-navy"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email address"
-                    autoComplete="email"
-                    className="w-full border border-zinc-200 bg-white px-4 py-3.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 focus:border-hobbs-navy focus:outline-none focus:ring-1 focus:ring-hobbs-navy"
-                  />
-                </div>
-                <input
-                  type="tel"
-                  placeholder="Phone number"
-                  autoComplete="tel"
-                  className="w-full border border-zinc-200 bg-white px-4 py-3.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 focus:border-hobbs-navy focus:outline-none focus:ring-1 focus:ring-hobbs-navy"
-                />
-                <textarea
-                  rows={5}
-                  placeholder="Tell us about your custom home, addition, deck, specialty space, or finish work"
-                  className="w-full resize-none border border-zinc-200 bg-white px-4 py-3.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 focus:border-hobbs-navy focus:outline-none focus:ring-1 focus:ring-hobbs-navy"
-                />
-                <button type="submit" className="btn-cut btn-fill-pop w-full py-3.5 text-[15px] font-semibold tracking-wide">
-                  Submit. We will follow up about your build
-                </button>
-              </form>
-            </div>
+            <ContactForm heading="Request a project conversation" />
           </div>
         </div>
       </section>
