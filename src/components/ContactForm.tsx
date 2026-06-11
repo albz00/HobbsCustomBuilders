@@ -73,9 +73,7 @@ function ContactForm({
       {status === 'success' ? (
         <div className="rounded-sm border border-emerald-200 bg-emerald-50 px-5 py-6 text-[15px] leading-relaxed text-emerald-900">
           <p className="font-semibold">Thanks — we got your message.</p>
-          <p className="mt-2">
-            A confirmation email is on its way from info@hostverna.co. We will follow up about your build soon.
-          </p>
+          <p className="mt-2">We will follow up about your build soon.</p>
         </div>
       ) : (
         <form id={id} className="space-y-5" onSubmit={handleSubmit}>
