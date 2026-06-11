@@ -11,7 +11,7 @@ export const services = [
     description:
       'We combine your vision with our field experience to shape a home that feels personal, practical, and built for daily life.',
     image:
-      'https://imagedelivery.net/FvOXf_HoZxDXgXU5xPiCfw/f158aff5-83e7-45cc-9f3e-05530b11cf00/public'
+      'https://imagedelivery.net/FvOXf_HoZxDXgXU5xPiCfw/a389253b-fe7a-4334-f752-d55cf792fe00/public'
   },
   {
     title: 'Additions',

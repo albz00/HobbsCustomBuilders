@@ -353,19 +353,8 @@ function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
 
-          <div className="mt-14 flex flex-col gap-4 border-t border-white/12 pt-8 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-14 border-t border-white/12 pt-8 text-sm text-white/55">
             <p>Copyright 2026 Hobbs Custom Builders. All rights reserved.</p>
-            <p>
-              Demo made by{' '}
-              <a
-                href="https://hostverna.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/72 underline decoration-white/25 underline-offset-2 transition-colors hover:text-hobbs-gold-bright"
-              >
-                HostVerna
-              </a>
-            </p>
           </div>
         </div>
         <div className="h-1 w-full bg-gradient-to-r from-hobbs-navy-deep via-hobbs-navy to-hobbs-navy-deep" aria-hidden />
