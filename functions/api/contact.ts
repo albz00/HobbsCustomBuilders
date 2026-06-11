@@ -17,7 +17,7 @@ type ContactPayload = {
   turnstileToken?: string;
 };
 
-const BUSINESS_EMAIL = 'info@hobbscustombuilders.com';
+const BUSINESS_EMAIL = 'johnhobbs691@gmail.com';
 const SENDER_EMAIL = 'info@hostverna.co';
 const SENDER_NAME = 'Hobbs Custom Builders';
 
