@@ -1,6 +1,8 @@
 export const PHONE = '304-667-9343';
 export const PHONE_TEL = '+13046679343';
 export const EMAIL = 'info@hobbscustombuilders.com';
+export const FORM_SENDER_EMAIL = 'info@hostverna.co';
+export const TURNSTILE_SITE_KEY = '0x4AAAAAADiYf-9QFiZEW9M8';
 export const ADDRESS_LINES = ['PO Box 46', 'White Sulphur Springs, WV 24986'] as const;
 export const LICENSE = 'WV license #WV061746';
 export const LICENSE_NUMBER = '061746';
