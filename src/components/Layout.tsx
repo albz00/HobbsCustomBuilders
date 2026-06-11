@@ -155,6 +155,9 @@ function Layout({ children }: { children: React.ReactNode }) {
               </div>
 
               <div className="flex flex-shrink-0 items-center justify-end gap-3 justify-self-end">
+                <a href={`tel:${PHONE_TEL}`} className={`${phoneLink} hidden md:inline`}>
+                  {PHONE}
+                </a>
                 <Link
                   to="/contact"
                   className={desktopContactButton}

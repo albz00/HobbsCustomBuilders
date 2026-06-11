@@ -5,6 +5,14 @@ export const ADDRESS_LINES = ['PO Box 46', 'White Sulphur Springs, WV 24986'] as
 export const LICENSE = 'WV license #WV061746';
 export const LICENSE_NUMBER = '061746';
 
+export const contactSubjects = [
+  'Custom homes',
+  'Additions',
+  'Decks and porches',
+  'Signature custom projects',
+  'General inquiry'
+] as const;
+
 export const services = [
   {
     title: 'Your Dream Home Here',
